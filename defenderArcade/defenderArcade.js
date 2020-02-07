@@ -3,30 +3,16 @@
  */
 
 "use strict";
-let fs = require('fs');
+let Core = require('../core').core;
 
-class defenderArcade {
+class defenderArcade extends Core {
     /**
      * Constructor the class
      * @param argsIn the prefix from the command line argument list.
      */
     constructor(argsIn) {
-        var args = argsIn.slice(2);
-        if (args.length != 1) {
-            console.log('wrong arg count');
-            var scriptName = argsIn[1].match(/([^\/]*)\/*$/)[1];
-            console.log('Usage: ' + scriptName + ' fileInputPath');
-            console.log('For example :');
-            var name = __dirname.match(/([^\/]*)\/*$/)[1];
-            console.log('\t' + scriptName + ' /path/input.txt');
-            return '';
-        }
-        if (!args[0])
-            return;
-        
-        console.log("Initialising data")
-        let buf = fs.readFileSync(args[0], "utf8");
-        this.arrPeriod = buf.split("\n");
+        super(argsIn)
+        this.arrPeriod = this.buffer.split("\n");
     }
 
     /**

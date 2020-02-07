@@ -4,16 +4,16 @@
 
 "use strict";
 let fs = require('fs');
+let Core = require('../core').core;
 
-class royalRumble {
+class royalRumble extends Core {
     /**
      * Constructor the class
-     * @param file The path of file input given
+     * @param argsIn the prefix from the command line argument list.
      */
-    constructor(file) {
-        console.log("Initialising data")
-        let buf = fs.readFileSync(file, "utf8");
-        this.arrMaster = buf.split("\n");
+    constructor(argsIn) {
+        super(argsIn)
+        this.arrMaster = this.buffer.split("\n");
         this.arrMaster.sort();
     }
 
